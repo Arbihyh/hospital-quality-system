@@ -26,6 +26,7 @@ use App\Services\UserService;
 use App\Services\ToolsService;
 use App\Services\TargetService;
 use App\Services\QualityService;
+use App\Services\MysqlCaseSearchService;
 use App\Services\ErrorRuleService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Service\ExportService;
@@ -4342,6 +4343,8 @@ class QualityController extends Controller
     //普通搜索
     public function normalSearch(Request $request)
     {
+        return MysqlCaseSearchService::normalSearch($request);
+
         $limit = $request->post('limit', 20);
         $page = $request->post('page', 1);
         $keyword = $request->post("keyword", "");
@@ -4542,6 +4545,8 @@ class QualityController extends Controller
     //高级搜索
     public function searchData(Request $request)
     {
+        return MysqlCaseSearchService::searchData($request);
+
         $limit = $request->post('limit', 20);
         $page = $request->post('page', 1);
         $detail = $request->post("detail", 1); // 1为详情，0为列表
