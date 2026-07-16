@@ -1,0 +1,166 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "Jmjk@886",
+                    "connection": [{
+                        "querySql": ["SELECT a.id, a.ZYH, a.denominator_bl, a.numerator_bl, a.bl_error, a.denominator_kjyw, a.numerator_kjyw, a.kjyw_error, a.denominator_exzlhxzl, a.numerator_exzlhxzl, a.exzlhxzl_error, a.denominator_exzlfszl, a.numerator_exzlfszl, a.exzlfszl_error, a.denominator_zrw, a.numerator_zrw, a.zrw_name, a.denominator_ct, a.numerator_ct, a.ct_error, a.numerator_bhlbl, a.denominator_bhlbl, a.bhlbl_content, a.denominator_xjpy, a.numerator_xjpy, a.xjpy_error, a.denominator_lcyx, a.numerator_lcyx, a.lcyx_error, a.numerator_operation, a.denominator_operation, a.operation_error,b.AAA02C,b.AAA04,b.AAC04,b.AAA29,b.MED_REC_ID,b.AAA01,b.AAC11N,b.AAB01,b.AAC01,b.AAA28 FROM `patient_info_target` as a inner join patient_info as b on a.ZYH=b.MED_REC_ID"],
+                        "jdbcUrl": ["jdbc:mysql://182.43.50.128:3307/quality?useSSL=false"]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "elasticsearchwriter",
+                "parameter": {
+                    "endpoint": "http://121.36.94.218:9200",
+                    "accessId": "",
+                    "accessKey": "",
+                    "index": "patient_info_target",
+                    "type": "doc",
+                    "cleanup": false,
+                    "dynamic": true,
+                    "splitter": ",",
+                    "column": [{
+                        "name": "id",
+                        "type": "integer"
+                    }, {
+                        "name": "ZYH",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_bl",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_bl",
+                        "type": "integer"
+                    }, {
+                        "name": "bl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_kjyw",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_kjyw",
+                        "type": "integer"
+                    }, {
+                        "name": "kjyw_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_exzlhxzl",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_exzlhxzl",
+                        "type": "integer"
+                    }, {
+                        "name": "exzlhxzl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_exzlfszl",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_exzlfszl",
+                        "type": "integer"
+                    }, {
+                        "name": "exzlfszl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_zrw",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_zrw",
+                        "type": "integer"
+                    }, {
+                        "name": "zrw_name",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_ct",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_ct",
+                        "type": "integer"
+                    }, {
+                        "name": "ct_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "numerator_bhlbl",
+                        "type": "integer"
+                    }, {
+                        "name": "denominator_bhlbl",
+                        "type": "integer"
+                    }, {
+                        "name": "bhlbl_content",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_xjpy",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_xjpy",
+                        "type": "integer"
+                    }, {
+                        "name": "xjpy_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_lcyx",
+                        "type": "integer"
+                    }, {
+                        "name": "numerator_lcyx",
+                        "type": "integer"
+                    }, {
+                        "name": "lcyx_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "numerator_operation",
+                        "type": "integer"
+                    }, {
+                        "name": "denominator_operation",
+                        "type": "integer"
+                    }, {
+                        "name":"operation_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAA02C",
+                        "type": "integer"
+                    }, {
+                        "name": "AAA04",
+                        "type": "integer"
+                    }, {
+                        "name": "AAC04",
+                        "type": "integer"
+                    }, {
+                        "name": "AAA29",
+                        "type": "integer"
+                    }, {
+                        "name": "MED_REC_ID",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAA01",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAC11N",
+                        "type": "keyword"
+                    },{
+                        "name":"AAB01",
+                        "type":"date"
+                    },{
+                        "name":"AAC01",
+                        "type":"date"
+                    },{
+                        "name":"AAA28",
+                        "type":"keyword"
+                    }]
+                }
+            }
+        }]
+    }
+}

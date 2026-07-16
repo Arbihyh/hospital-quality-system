@@ -1,0 +1,85 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT a.id,BLBH,rule_id,notice,JZHM,BRBH,code,error_field,FROM_UNIXTIME(unix_timestamp(b.AAC01), '%Y-%m-%d %H:%i:%s') as AAC01 from case_quality_v2 as a inner join patient_info as b on a.JZHM=b.MED_REC_ID"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "case_quality_v2_2023",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {
+                                "name": "id",
+                                "type": "id"
+                            },
+                            {
+                                "name": "BLBH",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "rule_id",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "notice",
+                                "type": "text"
+                            },
+                            {
+                                "name": "JZHM",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "BRBH",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "code",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "code",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAC01",
+                                "type": "date"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT EMR_BL_BL01.JZHM,JSON_ARRAYAGG(JSON_OBJECT('JZHM',EMR_BL_BL01.JZHM,'HJNR',EMR_BL_BLXG.HJNR)) as bllb4344 FROM EMR_BL_BL01 left join EMR_BL_BLXG on EMR_BL_BL01.BLBH=EMR_BL_BLXG.BLBH left join patient_info as pi on EMR_BL_BL01.JZHM=pi.MED_REC_ID where pi.IS_CATA=1 and pi.AAC01 > '$start' and BLLB=43 and HJNR!='' group by EMR_BL_BL01.JZHM"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint":"http://192.168.52.94:9200",
+                        "accessId":"",
+                        "accessKey":"",
+                        "index": "bl_serach_2023",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+                        "splitter": ",",
+                        "actionType": "update",
+                        "upsertKey": "id",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"bllb4344", "type":"nested"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

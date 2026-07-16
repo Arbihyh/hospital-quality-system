@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Elasticsearch\ClientBuilder;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use League\CommonMark\Environment;
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+        $this->app->singleton('es', function () {
+            $client = ClientBuilder::create()->setHosts(config('database.elasticsearch.hosts'));
+            if ( app()->environment() === "local" ){
+                $client->setLogger(app('log')->driver());
+            }
+            return $client->build();
+        });
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT id, id as uniid, HOSPIZATIONID, FROM_UNIXTIME(unix_timestamp(OPERATESTARTTIME), '%Y-%m-%d %H:%i:%s') as OPERATESTARTTIME, FROM_UNIXTIME(unix_timestamp(OPERATEENDTIME), '%Y-%m-%d %H:%i:%s') as OPERATEENDTIME,PREOPERATIONNAME from mzjl"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "mzjl_2023",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {
+                                "name": "id",
+                                "type": "id"
+                            },
+                            {
+                                "name": "uniid",
+                                "type": "long"
+                            },
+                            {
+                                "name": "HOSPIZATIONID",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "OPERATESTARTTIME",
+                                "type": "date"
+                            },
+                            {
+                                "name": "OPERATEENDTIME",
+                                "type": "date"
+                            },
+                            {
+                                "name": "PREOPERATIONNAME",
+                                "type": "keyword"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,165 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select a.id,a.id as data_id,a.ZYH,a.BRKS,a.KZKS,a.KZSJ,a.KZYS,a.TZSJ,a.XZJDGH,a.YZMC,a.YZQX,a.XZJDSJ,a.YDYZLB,b.AAA28,b.AAB01,b.AAC01,a.is_has_kjyw,a.is_has_hlyw,a.kjyw_name,a.hlyw_name,a.YCJL,a.JLDW,a.SYPC,a.is_operation,FROM_UNIXTIME(unix_timestamp(a.TZQRSJ), '%Y-%m-%d %H:%i:%s') as TZQRSJ,a.ypmc from yzb as a left join patient_info as b on a.ZYH=b.MED_REC_ID"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "yzb_2023",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {
+                                "name": "id",
+                                "type": "id"
+                            },
+                            {
+                                "name": "data_id",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "ZYH",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "BRKS",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "KZKS",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "KZSJ",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "KZYS",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "TZSJ",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "XZJDGH",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "YZMC",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "YZQX",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "XZJDSJ",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "YDYZLB",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA28",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAB01",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "AAC01",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "is_has_kjyw",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "is_has_hlyw",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "kjyw_name",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "hlyw_name",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "YCJL",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "JLDW",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "SYPC",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "is_operation",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "TZQRSJ",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "ypmc",
+                                "type": "text"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

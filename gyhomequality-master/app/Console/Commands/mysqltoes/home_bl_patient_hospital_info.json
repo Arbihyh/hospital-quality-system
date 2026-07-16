@@ -1,0 +1,50 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT AAA28,JSON_ARRAYAGG(JSON_OBJECT('AAA28',AAA28,'AAA30',AAA30,'ABC01C',ABC01C,'AAA27',AAA27,'AAC001',AAC001,'AAB01',AAB01,'AAB02C',AAB02C,'AAB03',AAB03,'AAB11C',AAB11C,'AAB11N',AAB11N,'AAC02C',AAC02C,'AAC03',AAC03,'AAC11C',AAC11C,'AAD01C',AAD01C,'AEM02',AEM02,'AEM03C',AEM03C,'AEM04',AEM04,'AEI01C',AEI01C)) FROM patient_hospital_info GROUP BY AAA28"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint":"http://127.0.0.1:9200",
+                        "accessId":"",
+                        "accessKey":"",
+                        "index": "home_bl",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+                        "splitter": ",",
+                        "actionType": "update",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"patient_hospital_info", "type":"nested"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

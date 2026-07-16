@@ -1,0 +1,66 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "Jmjk@886",
+                    "connection": [{
+                        "querySql": [
+                            "select id,id as data_id,BLBH,SYYS,SYSJ,JLSJ from EMR_BL_BLSY"
+                        ],
+                        "jdbcUrl": [
+                            "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                        ]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "elasticsearchwriter",
+                "parameter": {
+                    "endpoint": "http://127.0.0.1:9200",
+                    "accessId": "",
+                    "accessKey": "",
+                    "index": "blsy_2023",
+                    "type": "doc",
+                    "cleanup": false,
+                    "dynamic": true,
+                    "splitter": ",",
+                    "column": [{
+                        "name": "id",
+                        "type": "id"
+                    }, {
+                        "name": "data_id",
+                        "type": "integer"
+                    }, {
+                        "name": "BLBH",
+                        "type": "integer"
+                    }, {
+                        "name": "SYYS",
+                        "type": "keyword"
+                    }, {
+                        "name": "SYSJ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }, {
+                        "name": "JLSJ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }]
+                }
+            }
+        }]
+    }
+}

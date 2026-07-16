@@ -1,0 +1,89 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select MED_REC_ID as id, MED_REC_ID, AAA28,AAA01,AAA02C,AAA03,AAA05C,AAC11N,AAA42,AEN01,AAA06C,AAA07,AAA08C,if(AAB01 != '',AAB01, '1970-01-01 00:00:00') AS AAB01,if(AAC01 != '', AAC01, '1970-01-01 00:00:00') AS AAC01,AAA04,AAA40,AEM01C,AAC04,if(ADA01 != '',ADA01,'0') AS ADA01,ADA0101,AAA29,AAB06C,AAA26C,ABC01N,ORG_STATE,ICD9_NAME,created_at,ATTEND_GRP_CODE, ATTEND_GRP_NAME,F_D,J,coder_id,score,is_error,ABG01N,ABG01C,source,level,is_defect FROM patient_info"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "home_bl",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"MED_REC_ID", "type":"keyword"},
+                            {"name":"AAA28", "type":"text"},
+                            {"name":"AAA01", "type":"text"},
+                            {"name":"AAA02C", "type":"keyword"},
+                            {"name":"AAA03", "type":"keyword"},
+                            {"name":"AAA05C", "type":"keyword"},
+                            {"name":"AAC11N", "type":"keyword"},
+                            {"name":"AAA42", "type":"keyword"},
+                            {"name":"AEN01", "type":"keyword"},
+                            {"name":"AAA06C", "type":"keyword"},
+                            {"name":"AAA07", "type":"keyword"},
+                            {"name":"AAA08C", "type":"keyword"},
+                            {"name":"AAB01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"AAC01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"AAA04", "type":"integer"},
+                            {"name":"AAA40", "type":"integer"},
+                            {"name":"AEM01C", "type":"text"},
+                            {"name":"AAC04", "type":"integer"},
+                            {"name":"ADA01", "type":"keyword"},
+                            {"name":"ADA0101", "type":"keyword"},
+                            {"name":"AAA29", "type":"keyword"},
+                            {"name":"AAB06C", "type":"keyword"},
+                            {"name":"AAA26C", "type":"text"},
+                            {"name":"ABC01N", "type":"text"},
+                            {"name":"ORG_STATE", "type":"text"},
+                            {"name":"ICD9_NAME", "type":"text"},
+                            {"name":"created_at", "type":"keyword"},
+                            {"name":"ATTEND_GRP_CODE", "type":"keyword"},
+                            {"name":"ATTEND_GRP_NAME", "type":"keyword"},
+                            {"name":"F_D", "type":"keyword"},
+                            {"name":"J", "type":"keyword"},
+                            {"name":"coder_id", "type":"integer"},
+                            {"name":"score", "type":"integer"},
+                            {"name":"is_error", "type":"integer"},
+                            {"name":"ABG01N", "type":"keyword"},
+                            {"name":"ABG01C", "type":"keyword"},
+                            {"name":"source", "type":"integer"},
+                            {"name":"level", "type":"integer"},
+                            {"name":"is_defect", "type":"integer"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

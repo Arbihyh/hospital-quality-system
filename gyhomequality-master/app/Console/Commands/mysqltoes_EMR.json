@@ -1,0 +1,64 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+                                    "SELECT concat('EMR_BL_BL01_',a.JZHM) id,a.JZHM, a.EMR_BL_BL01,'EMR_BL_BL01' mark,p.AAA28,p.AAC11N,IFNULL(p.AAC01, '1970-01-01 00:00:00') AAC01,p.AAA04,p.AAA40,p.AEM01C,IFNULL(p.AAB01,'1970-01-01 00:00:00') AAB01,p.AAC04,p.ADA01,p.AAA29,p.AAB06C,p.AAA26C,p.created_at  FROM (select a.JZHM, JSON_OBJECTAGG(a.BLLB, a.HJNR) EMR_BL_BL01 from (select a.JZHM,a.BLLB, CONVERT(b.HJNR USING utf8mb4) HJNR from EMR_BL_BL01 a LEFT JOIN EMR_BL_BLXG b on a.BLBH = b.BLBH WHERE HJNR is not null) a LEFT JOIN patient_info p on a.JZHM = p.MED_REC_ID GROUP BY a.JZHM) a LEFT JOIN patient_info p on a.JZHM = p.MED_REC_ID"
+				                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+			            "endpoint":"http://127.0.0.1:9200",
+			            "accessId":"",
+                        "accessKey":"",
+                        "index": "other_detailed",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+			            "splitter": ",",
+                        "actionType": "update",
+                        "column": [
+                            {"name":"id", "type":"id"},
+			    	        {"name":"MED_REC_ID", "type":"keyword"},
+                            {"name":"EMR_BL_BL01", "type":"nested"},
+                            {"name":"mark", "type":"keyword"},
+                            {"name":"AAA28", "type":"keyword"},
+                            {"name":"AAC11N", "type":"keyword"},
+                            {"name":"AAC01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"AAA04", "type":"integer"},
+                            {"name":"AAA40", "type":"integer"},
+                            {"name":"AEM01C", "type":"keyword"},
+                            {"name":"AAB01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"AAC04", "type":"integer"},
+                            {"name":"ADA01", "type":"keyword"},
+                            {"name":"AAA29", "type":"keyword"},
+                            {"name":"AAB06C", "type":"keyword"},
+                            {"name":"AAA26C", "type":"keyword"},
+                            {"name":"created_at", "type":"keyword"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,58 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+					                "select concat('fee_datailed_',id),ZYH MED_REC_ID,YZMC,BRKS,KZSJ,YZQX,'yzb' mark,KZKS,KZYS,XZJDGH,TZSJ from yzb"
+				                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+			            "endpoint":"http://127.0.0.1:9200",
+			            "accessId":"",
+                        "accessKey":"",
+                        "index": "other_detailed",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+			            "splitter": ",",
+                        "actionType": "update",
+                        "column": [
+                            {"name":"id", "type":"id"},
+			    	        {"name":"MED_REC_ID", "type":"keyword"},
+                            {"name":"YZMC", "type":"text"},
+                            {"name":"BRKS", "type":"integer"},
+                            {"name":"KZSJ", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"YZQX", "type":"byte"},
+                            {"name":"mark", "type":"keyword"},
+                            {"name":"KZKS", "type":"keyword"},
+                            {"name":"KZYS", "type":"keyword"},
+                            {"name":"XZJDGH", "type":"keyword"},
+                            {"name":"TZSJ", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

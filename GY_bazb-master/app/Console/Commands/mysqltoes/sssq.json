@@ -1,0 +1,97 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT SQDH as id, SQDH, JGID, ZYH, SSKS, SQKS, SQYS, FROM_UNIXTIME(unix_timestamp(SQRQ), '%Y-%m-%d %H:%i:%s') as SQRQ, FROM_UNIXTIME(unix_timestamp(SSRQ), '%Y-%m-%d %H:%i:%s') as SSRQ, SSNM, SSYS, SSYZ, SSRZ, SSSZ, SSEZ, SSYQ, MZDM, MZYS, TJBZ, APBZ, ZFBZ, TXKS, CZGH, SQTL, SQZD, NSSMC, FYBQ, QKDJ, THYY, ZFYY, ZFGH, LRBZ, YXJS, NLTR, HBQTJB, QTTSQK, TSQKNR, SSJB, CRBZ, CRBG, BXBZ, BXSM, BZXX, SSTW, SPBZ, CFSS, ZLXZ, RJSS from SSSQ"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "sssq_2023",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {"name": "id", "type": "id"},
+                            {"name": "SQDH", "type": "integer"},
+                            {"name": "JGID", "type": "integer"},
+                            {"name": "ZYH", "type": "integer"},
+                            {"name": "SSKS", "type": "integer"},
+                            {"name": "SQKS", "type": "integer"},
+                            {"name": "SQYS", "type": "text"},
+                            {"name": "SQRQ", "type": "date"},
+                            {"name": "SSRQ", "type": "date"},
+                            {"name": "SSNM", "type": "integer"},
+                            {"name": "SSYS", "type": "text"},
+                            {"name": "SSYZ", "type": "text"},
+                            {"name": "SSRZ", "type": "text"},
+                            {"name": "SSSZ", "type": "text"},
+                            {"name": "SSEZ", "type": "text"},
+                            {"name": "SSYQ", "type": "text"},
+                            {"name": "MZDM", "type": "integer"},
+                            {"name": "MZYS", "type": "text"},
+                            {"name": "TJBZ", "type": "integer"},
+                            {"name": "APBZ", "type": "integer"},
+                            {"name": "ZFBZ", "type": "integer"},
+                            {"name": "TXKS", "type": "integer"},
+                            {"name": "CZGH", "type": "text"},
+                            {"name": "SQTL", "type": "integer"},
+                            {"name": "SQZD", "type": "integer"},
+                            {"name": "NSSMC", "type": "text"},
+                            {"name": "FYBQ", "type": "integer"},
+                            {"name": "QKDJ", "type": "integer"},
+                            {"name": "THYY", "type": "text"},
+                            {"name": "ZFYY", "type": "text"},
+                            {"name": "ZFGH", "type": "text"},
+                            {"name": "LRBZ", "type": "integer"},
+                            {"name": "YXJS","type": "integer"},
+                            {"name": "NLTR", "type": "integer"},
+                            {"name": "HBQTJB", "type": "integer"},
+                            {"name": "QTTSQK", "type": "integer"},
+                            {"name": "TSQKNR", "type": "text"},
+                            {"name": "SSJB", "type": "integer"},
+                            {"name": "CRBZ", "type": "integer"},
+                            {"name": "CRBG", "type": "text"},
+                            {"name": "BXBZ", "type": "integer"},
+                            {"name": "BXSM", "type": "text"},
+                            {"name": "BZXX", "type": "text"},
+                            {"name": "SSTW", "type": "text"},
+                            {"name": "SPBZ", "type": "integer"},
+                            {"name": "CFSS", "type": "integer"},
+                            {"name": "ZLXZ", "type": "integer"},
+                            {"name": "RJSS", "type": "integer"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

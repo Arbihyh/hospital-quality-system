@@ -1,0 +1,85 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "Jmjk@886",
+                    "connection": [{
+                        "querySql": [
+                            "select id,FYDJ,FYGB,FYKS,pre_FYMC,FYMC,FYSL,FYXH,JFRQ,AAA28 MED_REC_ID,SYFYGB,ZFJE,ZJE from fee_detailed"
+                        ],
+                        "jdbcUrl": [
+                            "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                        ]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "elasticsearchwriter",
+                "parameter": {
+                    "endpoint": "http://127.0.0.1:9200",
+                    "accessId": "",
+                    "accessKey": "",
+                    "index": "fee_detailed",
+                    "type": "doc",
+                    "cleanup": false,
+                    "dynamic": true,
+                    "splitter": ",",
+                    "column": [{
+                        "name": "id",
+                        "type": "id"
+                    },{
+                        "name": "FYDJ",
+                        "type": "keyword"
+                    }, {
+                        "name": "FYGB",
+                        "type": "integer"
+                    }, {
+                        "name": "FYKS",
+                        "type": "keyword"
+                    }, {
+                        "name": "pre_FYMC",
+                        "type": "text"
+                    }, {
+                        "name": "FYMC",
+                        "type": "text"
+                    }, {
+                        "name": "FYSL",
+                        "type": "integer"
+                    }, {
+                        "name": "FYXH",
+                        "type": "integer"
+                    }, {
+                        "name": "JFRQ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }, {
+                        "name": "MED_REC_ID",
+                        "type": "keyword"
+                    }, {
+                        "name": "SYFYGB",
+                        "type": "integer"
+                    }, {
+                        "name": "ZFJE",
+                        "type": "keyword"
+                    }, {
+                        "name": "ZJE",
+                        "type": "keyword"
+                    }]
+                }
+            }
+        }]
+    }
+}

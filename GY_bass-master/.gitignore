@@ -1,0 +1,14 @@
+/node_modules
+/public
+/storage/*.key
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.idea/
+全病历质控接口列表.md
+/.env
+.DS_Store
+.adnify/

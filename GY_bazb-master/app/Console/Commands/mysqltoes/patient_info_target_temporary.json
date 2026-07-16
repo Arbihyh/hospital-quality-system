@@ -1,0 +1,358 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "Jmjk@886",
+                    "connection": [{
+                        "querySql": ['SELECT a.id, a.ZYH, a.denominator_bl, a.numerator_bl, a.bl_error, a.denominator_kjyw, a.numerator_kjyw, a.kjyw_error, a.denominator_exzlhxzl, a.numerator_exzlhxzl, a.exzlhxzl_error, a.denominator_exzlfszl, a.numerator_exzlfszl, a.exzlfszl_error, a.denominator_zrw, a.numerator_zrw, a.zrw_name, a.denominator_ct, a.numerator_ct, a.ct_error, a.numerator_bhlbl, a.denominator_bhlbl, a.bhlbl_content, a.denominator_xjpy, a.numerator_xjpy, a.xjpy_error, a.denominator_lcyx, a.numerator_lcyx, a.lcyx_error, a.denominator_cyjl,a.numerator_cyjl,a.cyjl_error,a.denominator_hzqjjl,a.numerator_hzqjjl,a.hzqjjl_error,a.denominator_basy,a.numerator_basy,a.basy_error, a.numerator_operation, a.denominator_operation, a.operation_error,b.AAA02C,b.AAA04,b.AAC04,b.AAA29,b.MED_REC_ID,b.AAA01,b.AAC11N,IF(b.AAB01 != "",b.AAB01,"1970-01-01 00:00:00") as AAB01,IF(b.AAC01 != "",b.AAC01,"1970-01-01 00:00:00") as AAC01,b.AAA28,a.denominator_ryjl,a.numerator_ryjl,a.ryjl_error,a.denominator_operateCompletionRate,a.numerator_operateCompletionRate,a.operateCompletionRate_error,a.denominator_chafangCompletionRate,a.numerator_chafangCompletionRate,a.chafangCompletionRate_error,a.denominator_xjpy1,a.numerator_xjpy1,a.xjpy1_error,a.denominator_cyhzgd,a.numerator_cyhzgd,a.cyhzgd_error,a.denominator_zyzdtx,a.numerator_zyzdtx,a.zyzdtx_error,a.denominator_zysstx,a.numerator_zysstx,a.zysstx_error,a.denominator_zyzdbm,a.numerator_zyzdbm,a.zyzdbm_error,a.denominator_zyssbm,a.numerator_zyssbm,a.zyssbm_error,a.numerator_public_cyjl,a.denominator_hzqjcgl,a.numerator_hzqjcgl,a.hzqjcgl_error,a.denominator_zqtysgfqs,a.numerator_zqtysgfqs,a.zqtysgfqs_error,a.denominator_cyhzgdl,a.numerator_cyhzgdl,a.cyhzgdl_error,a.denominator_jjbl,a.numerator_jjbl,a.jjbl_error,a.denominator_ngzb,a.numerator_ngzb,a.ngzb_describe,a.denominator_xgzb,a.numerator_xgzb,a.xgzb_describe,a.NG_BLBH,a.XG_BLBH,a.denominator_ngrszb,a.numerator_ngrszb,a.ngrszb_describe,a.denominator_A,a.numerator_A,a.score FROM `patient_info_target_temporary` as a inner join patient_info as b on a.ZYH=b.MED_REC_ID'],
+                        "jdbcUrl": ["jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "elasticsearchwriter",
+                "parameter": {
+                    "endpoint": "http://127.0.0.1:9200",
+                    "accessId": "",
+                    "accessKey": "",
+                    "index": "patient_info_target_temporary",
+                    "type": "doc",
+                    "cleanup": false,
+                    "dynamic": true,
+                    "splitter": ",",
+                    "column": [{
+                        "name": "id",
+                        "type": "long"
+                    }, {
+                        "name": "ZYH",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_bl",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_bl",
+                        "type": "long"
+                    }, {
+                        "name": "bl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_kjyw",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_kjyw",
+                        "type": "long"
+                    }, {
+                        "name": "kjyw_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_exzlhxzl",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_exzlhxzl",
+                        "type": "long"
+                    }, {
+                        "name": "exzlhxzl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_exzlfszl",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_exzlfszl",
+                        "type": "long"
+                    }, {
+                        "name": "exzlfszl_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_zrw",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_zrw",
+                        "type": "long"
+                    }, {
+                        "name": "zrw_name",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_ct",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_ct",
+                        "type": "long"
+                    }, {
+                        "name": "ct_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "numerator_bhlbl",
+                        "type": "long"
+                    }, {
+                        "name": "denominator_bhlbl",
+                        "type": "long"
+                    }, {
+                        "name": "bhlbl_content",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_xjpy",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_xjpy",
+                        "type": "long"
+                    }, {
+                        "name": "xjpy_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "denominator_lcyx",
+                        "type": "long"
+                    }, {
+                        "name": "numerator_lcyx",
+                        "type": "long"
+                    }, {
+                        "name": "lcyx_error",
+                        "type": "keyword"
+                    },{
+                        "name": "denominator_cyjl",
+                        "type": "long"
+                    },{
+                        "name": "numerator_cyjl",
+                        "type": "long"
+                    },{
+                        "name": "cyjl_error",
+                        "type": "keyword"
+                    },{
+                        "name": "denominator_hzqjjl",
+                        "type": "long"
+                    },{
+                        "name": "numerator_hzqjjl",
+                        "type": "long"
+                    },{
+                        "name": "hzqjjl_error",
+                        "type": "keyword"
+                    },{
+                        "name": "denominator_basy",
+                        "type": "long"
+                    },{
+                        "name": "numerator_basy",
+                        "type": "long"
+                    },{
+                        "name": "basy_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "numerator_operation",
+                        "type": "long"
+                    }, {
+                        "name": "denominator_operation",
+                        "type": "long"
+                    }, {
+                        "name":"operation_error",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAA02C",
+                        "type": "long"
+                    }, {
+                        "name": "AAA04",
+                        "type": "long"
+                    }, {
+                        "name": "AAC04",
+                        "type": "long"
+                    }, {
+                        "name": "AAA29",
+                        "type": "long"
+                    }, {
+                        "name": "MED_REC_ID",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAA01",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAC11N",
+                        "type": "keyword"
+                    },{
+                        "name":"AAB01",
+                        "type":"date"
+                    },{
+                        "name":"AAC01",
+                        "type":"date"
+                    },{
+                        "name":"AAA28",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_ryjl",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_ryjl",
+                        "type":"integer"
+                    },{
+                        "name":"ryjl_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_operateCompletionRate",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_operateCompletionRate",
+                        "type":"integer"
+                    },{
+                        "name":"operateCompletionRate_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_chafangCompletionRate",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_chafangCompletionRate",
+                        "type":"integer"
+                    },{
+                        "name":"chafangCompletionRate_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_xjpy1",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_xjpy1",
+                        "type":"integer"
+                    },{
+                        "name":"xjpy1_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_cyhzgd",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_cyhzgd",
+                        "type":"integer"
+                    },{
+                        "name":"cyhzgd_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_zyzdtx",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_zyzdtx",
+                        "type":"integer"
+                    },{
+                        "name":"zyzdtx_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_zysstx",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_zysstx",
+                        "type":"integer"
+                    },{
+                        "name":"zysstx_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_zyzdbm",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_zyzdbm",
+                        "type":"integer"
+                    },{
+                        "name":"zyzdbm_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_zyssbm",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_zyssbm",
+                        "type":"integer"
+                    },{
+                        "name":"zyssbm_error",
+                        "type":"keyword"
+                    },{
+                        "name":"numerator_public_cyjl",
+                        "type":"integer"
+                    },{
+                        "name":"denominator_hzqjcgl",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_hzqjcgl",
+                        "type":"integer"
+                    },{
+                        "name":"hzqjcgl_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_zqtysgfqs",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_zqtysgfqs",
+                        "type":"integer"
+                    },{
+                        "name":"zqtysgfqs_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_cyhzgdl",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_cyhzgdl",
+                        "type":"integer"
+                    },{
+                        "name":"cyhzgdl_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_jjbl",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_jjbl",
+                        "type":"integer"
+                    },{
+                        "name":"jjbl_error",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_ngzb",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_ngzb",
+                        "type":"integer"
+                    },{
+                        "name":"ngzb_describe",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_xgzb",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_xgzb",
+                        "type":"integer"
+                    },{
+                        "name":"xgzb_describe",
+                        "type":"keyword"
+                    },{
+                        "name":"NG_BLBH",
+                        "type":"integer"
+                    },{
+                        "name":"XG_BLBH",
+                        "type":"integer"
+                    },{
+                        "name":"denominator_ngrszb",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_ngrszb",
+                        "type":"integer"
+                    },{
+                        "name":"ngrszb_describe",
+                        "type":"keyword"
+                    },{
+                        "name":"denominator_A",
+                        "type":"integer"
+                    },{
+                        "name":"numerator_A",
+                        "type":"integer"
+                    },{
+                        "name":"score",
+                        "type":"float"
+                    }
+                    ]
+                }
+            }
+        }]
+    }
+}
+
+

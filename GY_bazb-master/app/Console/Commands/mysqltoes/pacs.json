@@ -1,0 +1,100 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+                                    "select a.id,a.id as pacs_id,a.StudyUid,a.ZYH,a.ZYH MED_REC_ID,a.YLJGDM,a.JZLX,a.JZLSH,a.MZZYBZ,a.KH,a.KLX,a.BRXM,a.BRXB,a.PatientID,a.PatientID1,a.JCXMDM,a.JCXMDMYB,a.SQDH,if(p.KDSJ != '', p.KDSJ, '1970-01-01 00:00:00') AS KDSJ,a.JYSJ,a.ExamType,a.SBBM,a.YQBM,a.SQKS,a.SQKSMC,a.SQRGH,a.SQRXM,a.JCBGJGMC,a.JCKS,a.JCKSMC,a.JCYSGH,a.JCYS,a.BGSJ,a.BGRQ,a.BGRGH,a.BGRXM,a.SHRGH,a.SHRXM,a.JCBW,a.BWACR,a.JCMC,a.ZYJCXX1,a.ZYJCXX2,a.ZYJCXX3,a.YXBX,a.YXZD,a.BZHJY,a.SFYYY,a.XGBZ,a.MJ,a.YLYL1,a.YLYL2 from PACS as a"
+				                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+			            "endpoint":"http://127.0.0.1:9200",
+			            "accessId":"",
+                        "accessKey":"",
+                        "index": "pacs",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":true,
+			            "splitter": ",",
+                        "actionType": "update",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"pacs_id", "type":"integer"},
+                            {"name":"StudyUid", "type":"keyword"},
+			    	        {"name":"ZYH", "type":"keyword"},
+                            {"name":"MED_REC_ID", "type":"keyword"},
+                            {"name":"YLJGDM", "type":"keyword"},
+                            {"name":"JZLX", "type":"keyword"},
+                            {"name":"JZLSH", "type":"keyword"},
+                            {"name":"MZZYBZ", "type":"keyword"},
+                            {"name":"KH", "type":"keyword"},
+                            {"name":"KLX", "type":"keyword"},
+                            {"name":"BRXM", "type":"keyword"},
+                            {"name":"BRXB", "type":"keyword"},
+                            {"name":"PatientID", "type":"keyword"},
+                            {"name":"PatientID1", "type":"keyword"},
+                            {"name":"JCXMDM", "type":"keyword"},
+                            {"name":"JCXMDMYB", "type":"keyword"},
+                            {"name":"SQDH", "type":"keyword"},
+                            {"name":"KDSJ", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"JYSJ", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"ExamType", "type":"keyword"},
+                            {"name":"SBBM", "type":"keyword"},
+                            {"name":"YQBM", "type":"keyword"},
+                            {"name":"SQKS", "type":"keyword"},
+                            {"name":"SQKSMC", "type":"keyword"},
+                            {"name":"SQRGH", "type":"keyword"},
+                            {"name":"SQRXM", "type":"keyword"},
+                            {"name":"JCBGJGMC", "type":"keyword"},
+                            {"name":"JCKS", "type":"keyword"},
+                            {"name":"JCKSMC", "type":"keyword"},
+                            {"name":"JCYSGH", "type":"keyword"},
+                            {"name":"JCYS", "type":"keyword"},
+                            {"name":"BGSJ", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"BGRQ", "type":"keyword"},
+                            {"name":"BGRGH", "type":"keyword"},
+                            {"name":"BGRXM", "type":"keyword"},
+                            {"name":"SHRGH", "type":"keyword"},
+                            {"name":"SHRXM", "type":"keyword"},
+                            {"name":"JCBW", "type":"keyword"},
+                            {"name":"BWACR", "type":"keyword"},
+                            {"name":"JCMC", "type":"keyword"},
+                            {"name":"ZYJCXX1", "type":"keyword"},
+                            {"name":"ZYJCXX2", "type":"keyword"},
+                            {"name":"ZYJCXX3", "type":"keyword"},
+                            {"name":"YXBX", "type":"keyword"},
+                            {"name":"YXZD", "type":"keyword"},
+                            {"name":"BZHJY", "type":"keyword"},
+                            {"name":"SFYYY", "type":"keyword"},
+                            {"name":"XGBZ", "type":"keyword"},
+                            {"name":"MJ", "type":"keyword"},
+                            {"name":"YLYL1", "type":"keyword"},
+                            {"name":"YLYL2", "type":"keyword"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

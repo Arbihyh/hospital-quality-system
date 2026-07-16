@@ -1,0 +1,50 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select AAA28,JSON_ARRAYAGG(JSON_OBJECT('AAA28',AAA28,'ICD9_ID1',ICD9_ID1,'ICD9_NAME',ICD9_NAME,'OPE_DATE',OPE_DATE,'OPE_MAN_NAME',OPE_MAN_NAME,'OPE_MAN_CODE',OPE_MAN_CODE,'FRIST_ASSISTANT_CODE',FRIST_ASSISTANT_CODE,'FRIST_ASSISTANT_NAME',FRIST_ASSISTANT_NAME,'SECOND_ASSISTANT_CODE',SECOND_ASSISTANT_CODE,'SECOND_ASSISTANT_NAME',SECOND_ASSISTANT_NAME,'HOCUS_WAY_ID',HOCUS_WAY_ID,'INCISION_GRADE_ID',INCISION_GRADE_ID,'HOCUS_MAN_CODE',HOCUS_MAN_CODE,'HOCUS_MAN_NAME',HOCUS_MAN_NAME,'START_TIME',START_TIME,'END_TIME',END_TIME,'OPE_ORDER',OPE_ORDER,'OPE_LEVEL',OPE_LEVEL,'RJSS',RJSS,'AREA_ID',AREA_ID,'BATCH_ID',BATCH_ID,'OPE_TYPE',OPE_TYPE,'SSPB',SSPB,'HEAL_ID',HEAL_ID)) pacs from secondary_operation GROUP BY AAA28"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint":"http://127.0.0.1:9200",
+                        "accessId":"",
+                        "accessKey":"",
+                        "index": "home_bl",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+                        "splitter": ",",
+                        "actionType": "update",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"secondary_operation", "type":"nested"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,41 @@
+
+
+{
+    "job": {
+        "setting": {
+            "speed": {
+            	"channel": 5
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "oraclereader",
+                    "parameter": {
+                        "username": "PORTAL55_EMR",
+                        "password": "emr#2023",
+                        "where": "",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT `BLBH` FROM EMR_BL_BL01 WHERE  BLBH IN (3488593,3488592,3488591,3488590,3488589,3488588,3488587,3488586,3488584,3488583)"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:oracle:thin:@10.10.11.21:1521:ODS"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "streamwriter",
+                    "parameter": {
+                        "visible": true,
+                        "encoding": "UTF-8"
+                    }
+                }
+            }
+        ]
+    }
+}
+

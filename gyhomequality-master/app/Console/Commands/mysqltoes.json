@@ -1,0 +1,55 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+					                "select a.MED_REC_ID,a.MED_REC_ID as id,a.AAC01,a.AAC11N,DATE_FORMAT(IF(b.AAB01 = '',DATE_SUB(AAC01, INTERVAL AAC04 DAY), b.AAB01),'%Y-%m-%d %H:%i:%s') AAB01,a.AAA28,a.AAA04,a.AAC04  from patient_info as a left join patient_hospital_info b on a.MED_REC_ID = b.AAA28"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+			            "endpoint":"http://127.0.0.1:9200",
+			            "accessId":"",
+                        "accessKey":"",
+                        "index": "quality",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+			            "splitter": ",",
+                        "actionType": "update",
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"MED_REC_ID", "type":"keyword"},
+                            {"name":"AAC01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+                            {"name":"AAC11N", "type":"keyword"},
+			    	        {"name":"AAB01", "type":"date","origin":true,"format": "yyyy-MM-dd HH:mm:ss"},
+			   	            {"name":"AAA28", "type":"keyword"},
+				            {"name":"AAA04", "type":"byte"},
+				            {"name":"AAC04", "type":"integer"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,216 @@
+.text-bold {
+  font-weight: bold;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.button-container {
+  position: static;
+  bottom: 0;
+}
+
+.desc-value {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+  text-align: left;
+  font-style: normal;
+}
+
+.divider-wrapper {
+  width: 100%;
+  cursor: pointer;
+}
+
+.zk-text {
+  padding: 5px 20px;
+  background: #D3E3FF;
+  //   border-radius: 8px;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 600;
+  font-size: 14px;
+  color: #3A84FF;
+  line-height: 14px;
+  text-align: center;
+  font-style: normal;
+  // max-width: 200px;
+  text-overflow: ellipsis;
+  white-space: inherit;
+  overflow: hidden;
+}
+
+.divider-row {
+  height: 50px;
+  width: 100%;
+  padding: 0 10px;
+  transition: background-color 0.2s;
+
+  // &:hover {
+  //   background-color: #f5f5f5;
+  // }
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
+.filterBox {
+  font-size: 14px;
+  line-height: 23px;
+  margin-bottom: 10px;
+
+  .filterRow {
+    cursor: pointer;
+    line-height: 25px;
+
+    .filterRowContent {
+      text-align: center;
+
+      .filterLabel {
+        width: 56px;
+        white-space: nowrap;
+        text-align: right;
+        display: inline-block;
+      }
+    }
+  }
+
+  .selected {
+    color: #409EFF
+  }
+}
+
+.divider-content {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  color: #999;
+
+  .icon {
+    margin-right: 1px;
+    transition: transform 0.3s ease;
+  }
+
+  .collapse-text {
+    font-size: 14px;
+  }
+}
+
+.rotate-icon {
+  transform: rotate(180deg);
+}
+
+.collapsible-content {
+  border-top: 1px solid #f0f0f0;
+}
+
+.dialog-box {
+  ::v-deep .el-dialog__header {
+    padding: 10px 20px;
+    background: rgb(27, 100, 169);
+    color: #fff !important;
+
+    .el-dialog__title {
+      color: #fff;
+    }
+
+    .el-dialog__headerbtn {
+      top: 14px;
+    }
+  }
+
+  ::v-deep .el-dialog__body {
+    .el-form-item {
+      background: #fff;
+    }
+
+    .el-input {
+      width: 100%;
+
+      input {
+        height: 35px;
+        border: 1px solid #C0C4CC;
+        border-radius: 6px;
+      }
+    }
+  }
+}
+
+.expanded-row {
+  padding: 10px;
+  width: 100%;
+  height: 40px;
+}
+
+.font-size12 {
+  font-size: 12px;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+  color: #333;
+  gap: 1px;
+
+  .el-icon-circle-plus-outline {
+    margin-right: 5px;
+    color: #666;
+  }
+
+  // 眼睛图标容器样式
+  .visibility-icon {
+    cursor: pointer;
+    color: #666;
+    margin-left: 10px;
+
+    &:hover {
+      color: #409eff;
+    }
+
+    // 确保SVG图标有合适的大小和对齐
+    svg {
+      vertical-align: middle;
+      transition: color 0.2s ease;
+    }
+  }
+}
+
+.red-number {
+  color: rgba(239, 31, 58, 1);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.middle-content {
+  text-align: center;
+  flex: 1;
+}
+
+.right-content {
+  padding: 2px 8px;
+  background-color: #fff7e6;
+  color: #fa8c16;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}

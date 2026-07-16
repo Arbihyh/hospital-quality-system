@@ -1,0 +1,261 @@
+.span-link {
+  color: #031B64B0;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #031B64B0;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.blue {
+  color: #74b9ff;
+}
+
+//导出
+.export-btn {
+  background-color: #1B64B0 !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+  width: 80px !important;
+}
+
+.el-button--primary {
+  color: #FFF;
+  background-color: #005FA6;
+  border-color: #185da6;
+}
+
+.el-button:focus,
+.el-button:hover {
+  color: #409EFF !important;
+  border-color: #c6e2ff !important;
+  background-color: #ecf5ff !important;
+}
+
+.status-box.status-icon-1 {
+  & span {
+    color: #b1b1b1;
+  }
+
+  .status-icon {
+    background: #b1b1b1;
+  }
+}
+
+.status-box.status-icon-2 {
+  & span {
+    color: #2b8f53;
+  }
+
+  .status-icon {
+    background: #2b8f53;
+  }
+}
+
+.status-box.status-icon-3 {
+  & span {
+    color: #ff0000;
+  }
+
+  .status-icon {
+    background: #ff0000;
+  }
+}
+
+
+// ============================ 全局公共变量 ============================
+
+
+// ============================ Flex布局混合器  ============================
+// flex-水平垂直居中
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// flex-左右两端对齐+垂直居中
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// flex-左对齐+垂直居中
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+// flex-右对齐+垂直居中
+@mixin flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// flex-上下均分+水平居中
+@mixin flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// flex-纵向布局+垂直居中
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// flex-纵向布局+上下两端对齐
+@mixin flex-col-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// flex-自动换行
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// ============================ 文本样式混合器 ============================
+// 单行文本溢出省略号
+@mixin text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 多行文本溢出省略号 (传参，默认2行，可自定义行数)
+@mixin text-ellipsis-multi($line: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+// 文字两端对齐
+@mixin text-justify {
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+// 禁止文本选中
+@mixin text-unselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// 文字强制换行
+@mixin text-wrap {
+  word-break: break-all;
+  white-space: normal;
+}
+
+// ============================ 背景/边框/容器样式混合器  ============================
+// 通用容器样式：100%宽高+盒模型
+@mixin wh-full {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+// 宽100%+盒模型
+@mixin w-full {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// 高100%+盒模型
+@mixin h-full {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+// ============================ 定位/鼠标/溢出样式混合器 (通用基础) ============================
+// 绝对定位-水平垂直居中
+@mixin pos-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 绝对定位-水平居中
+@mixin pos-x-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 绝对定位-垂直居中
+@mixin pos-y-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 鼠标悬浮手型
+@mixin cursor-pointer {
+  cursor: pointer;
+}
+
+// 禁止鼠标事件 
+@mixin pointer-none {
+  pointer-events: none;
+}
+
+// 溢出隐藏
+@mixin overflow-hidden {
+  overflow: hidden;
+}
+
+// 横向滚动，纵向隐藏
+@mixin overflow-x-auto {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+// 纵向滚动，横向隐藏
+@mixin overflow-y-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+// ============================ 过渡/阴影/特殊效果混合器  ============================
+// 通用过渡动画 
+@mixin transition-base {
+  transition: all 0.3s ease;
+}
+
+// 按钮hover过渡动画
+@mixin transition-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+// 轻微阴影 (卡片/容器用)
+@mixin shadow-sm {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+// 中度阴影 (弹窗/悬浮框用)
+@mixin shadow-md {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+// 深度阴影 (模态框/全屏层用)
+@mixin shadow-lg {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+

@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Console\Commands\ZhiBiao;
+
+use App\Services\IndicatorService;
+use App\Services\IndicatorCalcService;
+use Illuminate\Console\Command;
+
+/**
+ * 抢救成功率
+ * @author lch
+ */
+class Zb_qjcg extends Command
+{
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'zb_qjcg {zyh?} {startTime?} {endTime?}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = '指标：抢救成功率';
+
+
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $zyh = $this->argument('zyh');
+        $s = time();
+        $startTime = $this->argument('startTime');
+        $startTime = !empty($startTime) ? date('Y-m-d 00:00:00', strtotime($startTime)) : date('Y-m-d 00:00:00', strtotime("-180 day", time()));
+        $endTime = $this->argument('endTime');
+        $endTime = !empty($endTime) ? date('Y-m-d 23:59:59', strtotime($endTime)) : date('Y-m-d 23:59:59', time());
+
+        $this->info('开始计算抢救成功率: ' . date("Y-m-d H:i:s"));
+        $moduleName = env("APP_NAME", "");
+        $className = "\\App\\Services\\MysqlDataSync\\{$moduleName}\\IndicatorCalcService";
+        $indicatorCalcService = new $className();
+        //$indicatorCalcService = new IndicatorCalcService();
+        $indicatorCalcService->calculateQjcg($zyh, $startTime, $endTime);
+        $e = time();
+        $timeDifference = $e - $s;
+        $totalHours = floor($timeDifference / 3600); // 3600秒 = 1小时
+        $totalMinutes = floor(($timeDifference % 3600) / 60); // 剩余分钟
+        echo "用时" . $totalHours . "小时" . $totalMinutes . "分钟" . "\n";
+        echo $this->description . " end:" . date('Y-m-d H:i:s') . "\n";
+        return 0;
+    }
+}

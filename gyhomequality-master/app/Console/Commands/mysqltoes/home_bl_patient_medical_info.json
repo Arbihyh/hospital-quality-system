@@ -1,0 +1,50 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT AAA28,JSON_ARRAYAGG(JSON_OBJECT('AAA28',AAA28,'ABA01C',ABA01C,'ABA01N',ABA01N,'ABC03C',ABC03C,'ABF01C',ABF01C,'ABF01N',ABF01N,'ABF04',ABF04,'ABF02C',ABF02C,'ABF03C',ABF03C,'ABH01C',ABH01C,'ABH0201C',ABH0201C,'ABH0202C',ABH0202C,'ABH0203C',ABH0203C,'ABH03C',ABH03C,'AEB02C',AEB02C,'AEB01',AEB01,'AED01C',AED01C,'AEG01C',AEG01C,'AEG02C',AEG02C,'AEG04',AEG04,'AEG05',AEG05,'AEG06',AEG06,'AEG07',AEG07,'AEG08',AEG08,'AEJ01',AEJ01,'AEJ02',AEJ02,'AEJ03',AEJ03,'AEJ04',AEJ04,'AEJ05',AEJ05,'AEJ06',AEJ06,'AEL01',AEL01,'AEN02C',AEN02C,'AEN02N',AEN02N,'AEI09',AEI09,'AEI10',AEI10,'AEI08',AEI08)) FROM patient_medical_info GROUP BY AAA28"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint":"http://127.0.0.1:9200",
+                        "accessId":"",
+                        "accessKey":"",
+                        "index": "home_bl",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+                        "splitter": ",",
+                        "actionType": "update",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"patient_medical_info", "type":"nested"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,133 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                        'SELECT a.BLBH as id,a.BLBH,a.MBLB,CJKS,if(p.AAB01 != "", p.AAB01, "1970-01-01 00:00:00") AS AAB01,if(p.AAC01 != ",", p.AAC01, "1970-01-01 00:00:00") AS AAC01,BRKS,JZHM,SXYS,BRBH,a.is_defect,BLLB,BLMC,b.HJNR,if(CJSJ != "", CJSJ, "1970-01-01 00:00:00") AS CJSJ,if(ZXSJ !="", ZXSJ, "1970-01-01 00:00:00") AS ZXSJ,a.operation_time,a.operation_handler,a.operation_handler_code,a.operation_end_time,p.AAC11N from EMR_BL_BL01 as a inner join EMR_BL_BLXG as b on a.BLBH=b.BLBH left join patient_info as p on a.JZHM=p.MED_REC_ID where a.BLZT<>9'
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "bl01_202303",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {
+                                "name": "id",
+                                "type": "id"
+                            },
+                            {
+                                "name": "BLBH",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "MBLB",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "CJKS",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAB01",
+                                "type": "date"
+                            },
+                            {
+                                "name": "AAC01",
+                                "type": "date"
+                            },
+                            {
+                                "name": "BRKS",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "JZHM",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "SXYS",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "BRBH",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "is_defect",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "BLLB",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "BLMC",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "HJNR",
+                                "type": "text"
+                            },
+                            {
+                                "name": "CJSJ",
+                                "type": "date"
+                            },
+                            {
+                                "name": "ZXSJ",
+                                "type": "date"
+                            },
+                            {
+                                "name": "operation_time",
+                                "type": "long"
+                            },
+                            {
+                                "name": "operation_handler",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "operation_handler_code",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "operation_end_time",
+                                "type": "long"
+                            },
+                            {
+                                "name": "AAC11N",
+                                "type": "keyword"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

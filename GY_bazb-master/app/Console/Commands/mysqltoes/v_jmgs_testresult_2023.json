@@ -1,0 +1,125 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [{
+            "reader": {
+                "name": "mysqlreader",
+                "parameter": {
+                    "username": "root",
+                    "password": "Jmjk@886",
+                    "connection": [{
+                        "querySql": [
+                            "select id,ZYH,TXM,NO,XM,XB,NL,CH,YBLX,YBZT,AAA28,BQ,LCZD,YW,JYXM,JG,TS,CKFW,DW,SJYS,JYY,SHY,CJSJ,JSSJ,BGSJ from V_JMGS_TESTRESULT"
+                        ],
+                        "jdbcUrl": [
+                            "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                        ]
+                    }]
+                }
+            },
+            "writer": {
+                "name": "elasticsearchwriter",
+                "parameter": {
+                    "endpoint": "http://127.0.0.1:9200",
+                    "accessId": "",
+                    "accessKey": "",
+                    "index": "v_jmgs_testresult_2023",
+                    "type": "doc",
+                    "cleanup": false,
+                    "dynamic": true,
+                    "splitter": ",",
+                    "column": [{
+                        "name": "id",
+                        "type": "id"
+                    }, {
+                        "name": "ZYH",
+                        "type": "keyword"
+                    }, {
+                        "name": "TXM",
+                        "type": "keyword"
+                    }, {
+                        "name": "NO",
+                        "type": "keyword"
+                    }, {
+                        "name": "XM",
+                        "type": "keyword"
+                    }, {
+                        "name": "XB",
+                        "type": "keyword"
+                    }, {
+                        "name": "NL",
+                        "type": "keyword"
+                    }, {
+                        "name": "CH",
+                        "type": "keyword"
+                    }, {
+                        "name": "YBLX",
+                        "type": "keyword"
+                    }, {
+                        "name": "YBZT",
+                        "type": "keyword"
+                    }, {
+                        "name": "AAA28",
+                        "type": "keyword"
+                    }, {
+                        "name": "BQ",
+                        "type": "keyword"
+                    }, {
+                        "name": "LCZD",
+                        "type": "keyword"
+                    }, {
+                        "name": "YW",
+                        "type": "keyword"
+                    }, {
+                        "name": "JYXM",
+                        "type": "keyword"
+                    }, {
+                        "name": "JG",
+                        "type": "keyword"
+                    }, {
+                        "name": "TS",
+                        "type": "keyword"
+                    }, {
+                        "name": "CKFW",
+                        "type": "keyword"
+                    }, {
+                        "name": "DW",
+                        "type": "keyword"
+                    }, {
+                        "name": "SJYS",
+                        "type": "keyword"
+                    }, {
+                        "name": "JYY",
+                        "type": "keyword"
+                    }, {
+                        "name": "SHY",
+                        "type": "keyword"
+                    }, {
+                        "name": "CJSJ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }, {
+                        "name": "JSSJ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }, {
+                        "name": "BGSJ",
+                        "type": "date",
+                        "origin": true,
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                    }]
+                }
+            }
+        }]
+    }
+}

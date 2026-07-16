@@ -1,0 +1,214 @@
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  .btn-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .rebuttal {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    background-color: rgba(240, 31, 58, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    text-align: center;
+    font-family: -regular;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.hz {
+  height: 20px;
+}
+
+.zsIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.ysIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.score-content {
+  width: 300px;
+  height: 60px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  border: 1px solid #000;
+  position: relative;
+
+  .triangle {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 30px solid transparent;
+    border-top: 30px solid red;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #fff;
+    z-index: 99;
+  }
+}
+
+.score-box {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 30px 51px 18px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.score-box div {
+  font-size: 20px;
+}
+
+.score-box .score-f {
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.score-box .score-dj {
+  font-weight: bold;
+}
+
+.score-box span {
+  font-size: 20px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.score-box .score {
+  font-size: 40px;
+  font-family: Source Han Sans CN-Medium, Source Han Sans CN;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 40px;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.score-box .level {
+  float: right;
+}
+
+/* score-box 不同等级的背景颜色（旧的等级样式） */
+.score-box.scoreLevel_1_1 {
+  background: #328240;
+}
+
+.score-box.scoreLevel_2_2 {
+  background: #8ac410;
+}
+
+.score-box.scoreLevel_3_3 {
+  background: #ef8a0d;
+}
+
+.score-box.scoreLevel_4_4 {
+  background: #f0203a;
+}
+
+/* score-box 另一种样式 */
+.score-box_bl {
+  padding: 20px 50px 20px 20px;
+}
+
+.score-box_bl .score {
+  margin-left: -30px;
+}
+
+.suggest-content {
+  width: 100%;
+  // height: 182px;
+  line-height: 20px;
+  background-color: #f1f5fe;
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: -regular;
+  padding: 0 5px;
+  margin-bottom: 15px
+}
+
+.legend-box {
+  text-align: center;
+  margin: 10px 0 10px;
+
+  span {
+    position: relative;
+    font-size: 14px;
+    font-family: Source Han Sans CN-Regular, Source Han Sans CN;
+    font-weight: 400;
+    color: #666666;
+    line-height: 20px;
+
+    &:nth-child(1) {
+      margin-right: 40px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: -20px;
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+    }
+
+    &.qz {
+      &::before {
+        background: #ed3028;
+      }
+    }
+
+    &.jy {
+      &::before {
+        background: #78b2f1;
+      }
+    }
+  }
+}

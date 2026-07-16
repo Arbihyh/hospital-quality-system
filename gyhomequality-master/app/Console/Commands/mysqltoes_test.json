@@ -1,0 +1,39 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+			"select JZHM, EMR_BL_BL01_01 from (select a.JZHM, CONVERT(b.HJNR USING utf8mb4) EMR_BL_BL01_01 from EMR_BL_BL01 a LEFT JOIN EMR_BL_BLXG b on a.BLBH = b.BLBH where a.BLLB = 294 GROUP BY a.BLBH )t where EMR_BL_BL01_01 is not null"
+				                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                      "name": "streamwriter",
+                      "parameter": {
+                        "print": true,
+                        "encoding": "UTF-8"
+                    }
+                }
+                
+            }
+        ]
+    }
+}
+

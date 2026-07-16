@@ -1,0 +1,673 @@
+//# 指标数据操作
+//DELETE home_bl
+//GET home_bl/_mapping
+//PUT home_bl
+{
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "AAA28": {
+                "type": "text"
+            },
+            "MED_REC_ID": {
+                "type": "keyword"
+            },
+            "AAA01": {
+                "type": "text"
+            },
+            "AAA02C": {
+                "type": "integer"
+            },
+            "AAA03": {
+                "type": "keyword"
+            },
+            "AAA04": {
+                "type": "integer"
+            },
+            "AAA05C": {
+                "type": "keyword"
+            },
+            "AAA40": {
+                "type": "integer"
+            },
+            "AAA42": {
+                "type": "keyword"
+            },
+            "AEN01": {
+                "type": "keyword"
+            },
+            "AAA06C": {
+                "type": "keyword"
+            },
+            "AAA07": {
+                "type": "keyword"
+            },
+            "AAA08C": {
+                "type": "keyword"
+            },
+            "AEM01C": {
+                "type": "text"
+            },
+            "AAB01": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "AAC01": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "AAC11N": {
+                "type": "keyword"
+            },
+            "AAC04": {
+                "type": "integer"
+            },
+            "ADA01": {
+                "type": "double"
+            },
+            "ADA0101": {
+                "type": "double"
+            },
+            "AAA29": {
+                "type": "integer"
+            },
+            "AAB06C": {
+                "type": "keyword"
+            },
+            "ABC01N": {
+                "type": "text"
+            },
+            "ICD9_NAME": {
+                "type": "text"
+            },
+            "ORG_STATE": {
+                "type": "text"
+            },
+            "AAA26C": {
+                "type": "text"
+            },
+            "ATTEND_GRP_CODE": {
+                "type": "keyword"
+            },
+            "ATTEND_GRP_NAME": {
+                "type": "keyword"
+            },
+            "F_D": {
+                "type": "keyword"
+            },
+            "J": {
+                "type": "keyword"
+            },
+            "coder_id": {
+                "type": "integer"
+            },
+            "score": {
+                "type": "integer"
+            },
+            "is_error": {
+                "type": "integer"
+            },
+            "ABG01N": {
+                "type": "keyword"
+            },
+            "ABG01C": {
+                "type": "keyword"
+            },
+            "source": {
+                "type": "integer"
+            },
+            "level": {
+                "type": "integer"
+            },
+            "is_defect": {
+                "type": "integer"
+            },
+            "error":{
+                "type": "nested",
+                "properties": {
+                    "year": {
+                        "type": "integer"
+                    },
+                    "month": {
+                        "type": "integer"
+                    },
+                    "desc": {
+                        "type": "keyword"
+                    },
+                    "error_field": {
+                        "type": "keyword"
+                    },
+                    "error_name": {
+                        "type": "keyword"
+                    },
+                    "level": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "type": "integer"
+                    },
+                    "error_type": {
+                        "type": "integer"
+                    },
+                    "error_rule": {
+                        "type": "integer"
+                    },
+                    "down": {
+                        "type": "integer"
+                    },
+                    "coder_id": {
+                        "type": "keyword"
+                    },
+                    "AAC11C": {
+                        "type": "keyword"
+                    },
+                    "status": {
+                        "type": "integer"
+                    },
+                    "source": {
+                        "type": "integer"
+                    },
+                    "category": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "icu":{
+                "type": "nested",
+                "properties": {
+                    "IS_MAIN_WAY": {
+                        "type": "integer"
+                    },
+                    "IN_TIME": {
+                        "type": "keyword"
+                    },
+                    "OUT_TIME": {
+                        "type": "keyword"
+                    },
+                    "AEL01": {
+                        "type": "keyword"
+                    },
+                    "AREA_ID": {
+                        "type": "keyword"
+                    },
+                    "BATCH_ID": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "main_diagnosis":{
+                "type": "nested",
+                "properties": {
+                    "ICD10_ID1": {
+                        "type": "text"
+                    },
+                    "ICD10_NAME": {
+                        "type": "text"
+                    },
+                    "DIA_ORDER": {
+                        "type": "integer"
+                    },
+                    "AREA_ID": {
+                        "type": "keyword"
+                    },
+                    "BATCH_ID": {
+                        "type": "keyword"
+                    },
+                    "LBMC": {
+                        "type": "keyword"
+                    },
+                    "RYQK": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "main_operation":{
+                "type": "nested",
+                "properties": {
+                    "ICD9_ID1": {
+                        "type": "text"
+                    },
+                    "ICD9_NAME": {
+                        "type": "text"
+                    },
+                    "OPE_DATE": {
+                        "type": "keyword"
+                    },
+                    "OPE_MAN_NAME": {
+                        "type": "keyword"
+                    },
+                    "OPE_MAN_CODE": {
+                        "type": "keyword"
+                    },
+                    "FRIST_ASSISTANT_CODE": {
+                        "type": "keyword"
+                    },
+                    "FRIST_ASSISTANT_NAME": {
+                        "type": "keyword"
+                    },
+                    "SECOND_ASSISTANT_CODE": {
+                        "type": "keyword"
+                    },
+                    "SECOND_ASSISTANT_NAME": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_WAY_ID": {
+                        "type": "keyword"
+                    },
+                    "INCISION_GRADE_ID": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_MAN_CODE": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_MAN_NAME": {
+                        "type": "keyword"
+                    },
+                    "START_TIME": {
+                        "type": "keyword"
+                    },
+                    "END_TIME": {
+                        "type": "keyword"
+                    },
+                    "OPE_ORDER": {
+                        "type": "integer"
+                    },
+                    "OPE_LEVEL": {
+                        "type": "integer"
+                    },
+                    "RJSS": {
+                        "type": "keyword"
+                    },
+                    "AREA_ID": {
+                        "type": "keyword"
+                    },
+                    "BATCH_ID": {
+                        "type": "keyword"
+                    },
+                    "OPE_TYPE": {
+                        "type": "integer"
+                    },
+                    "SSPB": {
+                        "type": "integer"
+                    },
+                    "HEAL_ID": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "other_diagnosis":{
+                "type": "nested",
+                "properties": {
+                    "ICD10_ID1": {
+                        "type": "text"
+                    },
+                    "ICD10_NAME": {
+                        "type": "text"
+                    },
+                    "DIA_ORDER": {
+                        "type": "keyword"
+                    },
+                    "AREA_ID": {
+                        "type": "keyword"
+                    },
+                    "BATCH_ID": {
+                        "type": "keyword"
+                    },
+                    "LBMC": {
+                        "type": "keyword"
+                    },
+                    "RYQK": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "patient_doctor_info":{
+                "type": "nested",
+                "properties": {
+                    "AED02": {
+                        "type": "keyword"
+                    },
+                    "AED03": {
+                        "type": "keyword"
+                    },
+                    "AED04": {
+                        "type": "keyword"
+                    },
+                    "AEE01": {
+                        "type": "keyword"
+                    },
+                    "AEE01_CODE": {
+                        "type": "keyword"
+                    },
+                    "AEE02": {
+                        "type": "keyword"
+                    },
+                    "AEE03": {
+                        "type": "keyword"
+                    },
+                    "AEE11": {
+                        "type": "keyword"
+                    },
+                    "AEE09": {
+                        "type": "keyword"
+                    },
+                    "AEE04": {
+                        "type": "keyword"
+                    },
+                    "AEE05": {
+                        "type": "keyword"
+                    },
+                    "AEE07": {
+                        "type": "keyword"
+                    },
+                    "AEE08": {
+                        "type": "keyword"
+                    },
+                    "AEE10": {
+                        "type": "keyword"
+                    },
+                    "CODE_DATE": {
+                        "type": "keyword"
+                    },
+                    "COMPLETION_DATE": {
+                        "type": "keyword"
+                    },
+                    "SIGN_IN_DATE": {
+                        "type": "keyword"
+                    },
+                    "QUALITY_CONTROL": {
+                        "type": "keyword"
+                    },
+                    "AEE02_CODE": {
+                        "type": "keyword"
+                    },
+                    "AEE03_CODE": {
+                        "type": "keyword"
+                    },
+                    "AEE04_CODE": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "patient_hospital_info":{
+                "type": "nested",
+                "properties": {
+                    "AAA30": {
+                        "type": "keyword"
+                    },
+                    "ABC01C": {
+                        "type": "text"
+                    },
+                    "AAA27": {
+                        "type": "keyword"
+                    },
+                    "AAC001": {
+                        "type": "keyword"
+                    },
+                    "AAB01": {
+                        "type": "keyword"
+                    },
+                    "AAB02C": {
+                        "type": "keyword"
+                    },
+                    "AAB03": {
+                        "type": "keyword"
+                    },
+                    "AAB11C": {
+                        "type": "keyword"
+                    },
+                    "AAB11N": {
+                        "type": "keyword"
+                    },
+                    "AAC02C": {
+                        "type": "keyword"
+                    },
+                    "AAC03": {
+                        "type": "keyword"
+                    },
+                    "AAC11C": {
+                        "type": "keyword"
+                    },
+                    "AAD01C": {
+                        "type": "keyword"
+                    },
+                    "AEM02": {
+                        "type": "keyword"
+                    },
+                    "AEM03C": {
+                        "type": "keyword"
+                    },
+                    "AEM04": {
+                        "type": "keyword"
+                    },
+                    "AEI01C": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "patient_medical_info":{
+                "type": "nested",
+                "properties": {
+                    "ABA01C": {
+                        "type": "text"
+                    },
+                    "ABA01N": {
+                        "type": "text"
+                    },
+                    "ABC03C": {
+                        "type": "text"
+                    },
+                    "ABF01C": {
+                        "type": "text"
+                    },
+                    "ABF01N": {
+                        "type": "text"
+                    },
+                    "ABF04": {
+                        "type": "keyword"
+                    },
+                    "ABF02C": {
+                        "type": "keyword"
+                    },
+                    "ABF03C": {
+                        "type": "keyword"
+                    },
+                    "ABH01C": {
+                        "type": "keyword"
+                    },
+                    "ABH0201C": {
+                        "type": "keyword"
+                    },
+                    "ABH0202C": {
+                        "type": "keyword"
+                    },
+                    "ABH0203C": {
+                        "type": "keyword"
+                    },
+                    "ABH03C": {
+                        "type": "keyword"
+                    },
+                    "AEB02C": {
+                        "type": "keyword"
+                    },
+                    "AEB01": {
+                        "type": "keyword"
+                    },
+                    "AED01C": {
+                        "type": "keyword"
+                    },
+                    "AEG01C": {
+                        "type": "keyword"
+                    },
+                    "AEG02C": {
+                        "type": "keyword"
+                    },
+                    "AEG04": {
+                        "type": "keyword"
+                    },
+                    "AEG05": {
+                        "type": "keyword"
+                    },
+                    "AEG06": {
+                        "type": "keyword"
+                    },
+                    "AEG07": {
+                        "type": "keyword"
+                    },
+                    "AEG08": {
+                        "type": "keyword"
+                    },
+                    "AEJ01": {
+                        "type": "keyword"
+                    },
+                    "AEJ02": {
+                        "type": "keyword"
+                    },
+                    "AEJ03": {
+                        "type": "keyword"
+                    },
+                    "AEJ04": {
+                        "type": "keyword"
+                    },
+                    "AEJ05": {
+                        "type": "keyword"
+                    },
+                    "AEJ06": {
+                        "type": "keyword"
+                    },
+                    "AEL01": {
+                        "type": "keyword"
+                    },
+                    "AEN02C": {
+                        "type": "keyword"
+                    },
+                    "AEN02N": {
+                        "type": "keyword"
+                    },
+                    "AEI09": {
+                        "type": "keyword"
+                    },
+                    "AEI10": {
+                        "type": "keyword"
+                    },
+                    "AEI08": {
+                        "type": "keyword"
+                    }
+                }
+            },
+            "secondary_operation":{
+                "type": "nested",
+                "properties": {
+                    "ICD9_ID1": {
+                        "type": "text"
+                    },
+                    "ICD9_NAME": {
+                        "type": "text"
+                    },
+                    "OPE_DATE": {
+                        "type": "keyword"
+                    },
+                    "OPE_MAN_NAME": {
+                        "type": "keyword"
+                    },
+                    "OPE_MAN_CODE": {
+                        "type": "keyword"
+                    },
+                    "FRIST_ASSISTANT_CODE": {
+                        "type": "keyword"
+                    },
+                    "FRIST_ASSISTANT_NAME": {
+                        "type": "keyword"
+                    },
+                    "SECOND_ASSISTANT_CODE": {
+                        "type": "keyword"
+                    },
+                    "SECOND_ASSISTANT_NAME": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_WAY_ID": {
+                        "type": "keyword"
+                    },
+                    "INCISION_GRADE_ID": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_MAN_CODE": {
+                        "type": "keyword"
+                    },
+                    "HOCUS_MAN_NAME": {
+                        "type": "keyword"
+                    },
+                    "START_TIME": {
+                        "type": "keyword"
+                    },
+                    "END_TIME": {
+                        "type": "keyword"
+                    },
+                    "OPE_ORDER": {
+                        "type": "integer"
+                    },
+                    "OPE_LEVEL": {
+                        "type": "integer"
+                    },
+                    "RJSS": {
+                        "type": "keyword"
+                    },
+                    "AREA_ID": {
+                        "type": "keyword"
+                    },
+                    "BATCH_ID": {
+                        "type": "keyword"
+                    },
+                    "OPE_TYPE": {
+                        "type": "integer"
+                    },
+                    "SSPB": {
+                        "type": "integer"
+                    },
+                    "HEAL_ID": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "bl01": {
+                "type": "nested",
+                "properties": {
+                    "JZHM": {
+                        "type": "text"
+                    },
+                    "BLMC": {
+                        "type": "text"
+                    },
+                    "BLLB": {
+                        "type": "text"
+                    }
+                }
+            },
+            "patient_add":{
+                "type": "nested",
+                "properties": {
+                    "AAA28": {
+                        "type": "keyword"
+                    },
+                    "KZRXM": {
+                        "type": "text"
+                    },
+                    "ZHFZRYSXM": {
+                        "type": "text"
+                    },
+                    "ZZYSXM": {
+                        "type": "text"
+                    },
+                    "ZYYSXM": {
+                        "type": "text"
+                    },
+                    "ZZYISXM": {
+                        "type": "text"
+                    }
+                }
+            }
+        }
+    }
+}

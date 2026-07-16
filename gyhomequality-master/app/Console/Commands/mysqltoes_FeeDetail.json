@@ -1,0 +1,60 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+				                "querySql": [
+					                "select concat('fee_datailed_',id),AAA28 MED_REC_ID,FYMC,FYSL,JFRQ,ZJE,FYKS,'fee_detailed' mark,FYXH,ZFJE,FYDJ,FYGB,SYFYGB from fee_detailed"
+				                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+			            "endpoint":"http://127.0.0.1:9200",
+			            "accessId":"",
+                        "accessKey":"",
+                        "index": "other_detailed",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+			            "splitter": ",",
+                        "actionType": "update",
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"MED_REC_ID", "type":"keyword"},
+			    	        {"name":"FYMC", "type":"text"},
+                            {"name":"FYSL", "type":"integer"},
+                            {"name":"JFRQ", "type":"keyword"},
+                            {"name":"ZJE", "type":"keyword"},
+                            {"name":"FYKS", "type":"keyword"},
+                            {"name":"mark", "type":"keyword"},
+                            {"name":"FYXH", "type":"integer"},
+                            {"name":"ZFJE", "type":"keyword"},
+                            {"name":"FYDJ", "type":"keyword"},
+                            {"name":"FYGB", "type":"integer"},
+                            {"name":"SYFYGB", "type":"integer"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

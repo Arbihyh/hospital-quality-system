@@ -1,0 +1,50 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "SELECT AAA28,JSON_ARRAYAGG(JSON_OBJECT('AAA28',AAA28,'AED02',AED02,'AED03',AED03,'AED04',AED04,'AEE01',AEE01,'AEE01_CODE',AEE01_CODE,'AEE02',AEE02,'AEE03',AEE03,'AEE11',AEE11,'AEE09',AEE09,'AEE04',AEE04,'AEE05',AEE05,'AEE07',AEE07,'AEE08',AEE08,'AEE10',AEE10,'CODE_DATE',CODE_DATE,'COMPLETION_DATE',COMPLETION_DATE,'SIGN_IN_DATE',SIGN_IN_DATE,'QUALITY_CONTROL',QUALITY_CONTROL,'AEE02_CODE',AEE02_CODE,'AEE03_CODE',AEE03_CODE,'AEE04_CODE',AEE04_CODE)) FROM patient_doctor_info GROUP BY AAA28"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint":"http://127.0.0.1:9200",
+                        "accessId":"",
+                        "accessKey":"",
+                        "index": "home_bl",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic":false,
+                        "splitter": ",",
+                        "actionType": "update",
+                        "settings": {"index" :{"number_of_shards": 4, "number_of_replicas": 0}},
+                        "column": [
+                            {"name":"id", "type":"id"},
+                            {"name":"patient_doctor_info", "type":"nested"}
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
+

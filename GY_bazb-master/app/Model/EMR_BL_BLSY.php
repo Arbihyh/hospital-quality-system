@@ -1,0 +1,20 @@
+<?php
+
+
+namespace App\Model;
+
+use DateTimeInterface;
+use Illuminate\Database\Eloquent\Model;
+
+class EMR_BL_BLSY extends Model
+{
+    protected $table = 'EMR_BL_BLSY';
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    public function staff(){
+        return $this->hasOne(Staff::class,'code','SYYS');
+    }
+}

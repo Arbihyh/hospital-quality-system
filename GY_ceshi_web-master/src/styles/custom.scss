@@ -1,0 +1,117 @@
+// 自定义table-header
+
+.el-table .el-table__row td {
+  color: #666666;
+  border-bottom: 1px solid #f4f4f4;
+}
+.el-table .el-table__header tr th:first-child {
+  border-radius: 10px 0px 0px 10px;
+}
+.el-table .el-table__header tr th:nth-last-child(2) {
+  border-radius: 0px 10px 10px 0px;
+}
+.el-table .el-table__header tr th {
+  background: #f1f6ff;
+  color: #13171e;
+  border-bottom: 0px;
+}
+
+.el-table {
+  .link {
+    text-decoration: underline;
+    color: #004983;
+    cursor: pointer;
+  }
+  
+  .red-link {
+    font-weight: 600;
+    color: red;
+    text-decoration:underline;
+    cursor: pointer;
+  }
+  .selected-row {
+    background-color:#ecf5ff !important;
+  }
+}
+.blue-link {
+  text-decoration: underline;
+  color: #206ccf;
+  cursor: pointer;
+}
+
+// 搜索button
+.long-btn {
+  width: 240px;
+}
+.export-btn {
+  background: #185da6;
+  &:hover {
+    background: #185da6;
+    opacity: 0.8;
+  }
+  &:active, &:focus {
+    background: #185da6;
+  }
+}
+// 不允许复制
+.nocopy {
+  user-select: none !important;
+}
+
+// 修改默认滚动条
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background: hsla(0, 0%, 53%, 0.4);
+}
+
+:hover::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 53%, 0.1);
+}
+
+// 卡片背景
+
+.bg-box {
+  padding: 0 13px 13px;
+  width: 100%;
+  .bg-card {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    overflow-x: hidden;
+  }
+  .mb20 {
+    margin-bottom: 20px;
+  }
+  .bg185DA6 {
+    background: #185DA6;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .link {
+    text-decoration: underline;
+    color: #FF786F;
+    cursor: pointer;
+  }
+  .link2 {
+    color: #004983;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .c_FF786F {
+    color: #FF786F;
+  }
+}

@@ -1,0 +1,237 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 1
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "Jmjk@886",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select id,id as data_id,hospital_name,AAA28,MED_REC_ID,AAA01,AAA02C,AAA03,AAA04,AAA05C,AAA40,AAA42,AEN01,AAA06C,AAA07,AAA08C,AEM01C,FROM_UNIXTIME(unix_timestamp(AAB01), '%Y-%m-%d %H:%i:%s') as AAB01,FROM_UNIXTIME(unix_timestamp(AAC01), '%Y-%m-%d %H:%i:%s') as AAC01,AAC11N,AAC04,ADA01,ADA0101,AAA29,AAB06C,ABC01N,ICD9_NAME,ORG_STATE,AAA26C,ATTEND_GRP_CODE,ATTEND_GRP_NAME,F_D,J,coder_id,score,is_error,ABG01N,ABG01C,status,FROM_UNIXTIME(unix_timestamp(created_at), '%Y-%m-%d %H:%i:%s') as created_at,FROM_UNIXTIME(unix_timestamp(AAC01), '%Y-%m-%d %H:%i:%s') as AAC01,source,level,is_defect,is_defect_v2 from patient_info"
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:mysql://127.0.0.1:3307/quality?useSSL=false"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "writer": {
+                    "name": "elasticsearchwriter",
+                    "parameter": {
+                        "endpoint": "http://127.0.0.1:9200",
+                        "accessId": "",
+                        "accessKey": "",
+                        "index": "patient_info",
+                        "type": "doc",
+                        "cleanup": false,
+                        "dynamic": true,
+                        "splitter": ",",
+                        "column": [
+                            {
+                                "name": "id",
+                                "type": "id"
+                            },
+                            {
+                                "name": "data_id",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "hospital_name",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA28",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "MED_REC_ID",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA01",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA02C",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "AAA03",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA04",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "AAA05C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA40",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "AAA42",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AEN01",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA06C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA07",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA08C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AEM01C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAB01",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "AAC01",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "AAC11N",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAC04",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "ADA01",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ADA0101",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA29",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "AAB06C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ABC01N",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ICD9_NAME",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ORG_STATE",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "AAA26C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ATTEND_GRP_CODE",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ATTEND_GRP_NAME",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "F_D",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "J",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "coder_id",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "score",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "is_error",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "ABG01N",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "ABG01C",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "status",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "created_at",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "AAC01",
+                                "type": "date",
+                                "origin": true,
+                                "format": "yyyy-MM-dd HH:mm:ss"
+                            },
+                            {
+                                "name": "source",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "level",
+                                "type": "keyword"
+                            },
+                            {
+                                "name": "is_defect",
+                                "type": "integer"
+                            },
+                            {
+                                "name": "is_defect_v2",
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}
